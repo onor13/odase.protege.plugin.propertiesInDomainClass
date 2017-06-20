@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+	<!-- View -->
+	<extension id="SelectedClassObjectPropertiesView" point="org.protege.editor.core.application.ViewComponent">
+		<label value="Object properties in Domain of class view" />
+		<class value="odase.view.SelectedClassObjectPropertiesView" />
+		<headerColor value="@org.protege.objectpropertycolor"/>
+		<category value="@org.protege.objectpropertycategory" />
+	</extension>
+
+	<extension id="SelectedClassDataPropertiesView" point="org.protege.editor.core.application.ViewComponent">
+		<label value="Data properties in Domain of class view" />
+		<class value="odase.view.SelectedClassDataPropertiesView" />
+		<headerColor value="@org.protege.datapropertycolor"/>
+		<category value="@org.protege.datapropertycategory" />
+	</extension>
+    
+</plugin>
