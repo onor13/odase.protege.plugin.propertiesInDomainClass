@@ -26,4 +26,4 @@ To build and run, you must have the following items installed:
  
 #### Plug-in screenshots
 The screenshot shows how this views can be used in combination with the existing views.
-![alt text](screenshots/screenshot1.jpg "")
+![screenshot1](https://user-images.githubusercontent.com/19971537/27334926-24f65a3a-55cb-11e7-87fa-5b1fa1ea54a4.JPG)
