@@ -65,6 +65,7 @@
 							org.protege.editor.owl.*;version="5.0.0", <!-- equivalent to [4.3,infinity) -->
 							*
 						</Import-Package>
+						<Update-Url>https://raw.githubusercontent.com/onor13/odase.protege.plugin.propertiesInDomainClass/master/update.properties</Update-Url>
 					</instructions>
 				</configuration>
             </plugin>
