@@ -1,4 +1,4 @@
-package odase.view;
+package odase.propertiesInDomainClass.view;
 
 import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.ui.rename.RenameEntityPanel;

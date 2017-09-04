@@ -1,12 +1,10 @@
-package odase.view;
+package odase.propertiesInDomainClass.view;
 
-import odase.hierarchyProviders.SelectedClassOWLObjectPropertiesProvider;
+import odase.propertiesInDomainClass.hierarchyProviders.SelectedClassOWLObjectPropertiesProvider;
 import org.protege.editor.owl.model.entity.OWLEntityCreationSet;
 import org.protege.editor.owl.model.hierarchy.AbstractOWLPropertyHierarchyProvider;
 import org.protege.editor.owl.ui.OWLIcons;
 import org.semanticweb.owlapi.model.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 

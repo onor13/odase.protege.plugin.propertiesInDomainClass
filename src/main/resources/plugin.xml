@@ -6,14 +6,14 @@
 	<!-- View -->
 	<extension id="SelectedClassObjectPropertiesView" point="org.protege.editor.core.application.ViewComponent">
 		<label value="Object properties in Domain of class view" />
-		<class value="odase.view.SelectedClassObjectPropertiesView" />
+		<class value="odase.propertiesInDomainClass.view.SelectedClassObjectPropertiesView" />
 		<headerColor value="@org.protege.objectpropertycolor"/>
 		<category value="@org.protege.objectpropertycategory" />
 	</extension>
 
 	<extension id="SelectedClassDataPropertiesView" point="org.protege.editor.core.application.ViewComponent">
 		<label value="Data properties in Domain of class view" />
-		<class value="odase.view.SelectedClassDataPropertiesView" />
+		<class value="odase.propertiesInDomainClass.view.SelectedClassDataPropertiesView" />
 		<headerColor value="@org.protege.datapropertycolor"/>
 		<category value="@org.protege.datapropertycategory" />
 	</extension>

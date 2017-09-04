@@ -1,10 +1,10 @@
-package odase.view;
+package odase.propertiesInDomainClass.view;
 
+import odase.propertiesInDomainClass.Tools;
 import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.model.OWLModelManager;
 import org.protege.editor.owl.model.entity.OWLEntityCreationSet;
 import org.protege.editor.owl.model.hierarchy.AbstractOWLPropertyHierarchyProvider;
-import org.protege.editor.owl.model.inference.ReasonerStatus;
 import org.protege.editor.owl.ui.action.AbstractDeleteEntityAction;
 import org.protege.editor.owl.ui.action.AbstractOWLTreeAction;
 import org.protege.editor.owl.ui.tree.OWLModelManagerTree;
@@ -265,7 +265,8 @@ public abstract class SelectedClassPropertiesView <T extends OWLProperty> extend
     }
 
     private boolean isReasonerActive(){
-        return getOWLEditorKit().getOWLModelManager().getOWLReasonerManager().getReasonerStatus().equals(ReasonerStatus.INITIALIZED);
+        return Tools.isReasonerActive(getOWLEditorKit().getOWLModelManager().getOWLReasonerManager().getReasonerStatus());
+
     }
 
     private String getReasonerName(){

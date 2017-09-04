@@ -1,20 +1,15 @@
-package odase.hierarchyProviders;
+package odase.propertiesInDomainClass.hierarchyProviders;
 
+import odase.propertiesInDomainClass.Tools;
 import org.protege.editor.owl.OWLEditorKit;
-import org.protege.editor.owl.model.inference.ReasonerStatus;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.BufferingMode;
-import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
-import org.semanticweb.owlapi.search.EntitySearcher;
 
 import javax.annotation.Nonnull;
 import java.util.*;
-
-import static java.util.stream.Collectors.toList;
-import static org.semanticweb.owlapi.apibinding.OWLFunctionalSyntaxFactory.ObjectIntersectionOf;
 
 /**
  * Created by vblagodarov on 01-06-17.
@@ -29,7 +24,7 @@ public class OWLMatchingPropertiesProvider<T extends OWLPropertyDomainAxiom<OWLP
     {
         editorKit = owlEditorKit;
         reasoner = editorKit.getModelManager().getOWLReasonerManager().getCurrentReasoner();
-        if(!editorKit.getOWLModelManager().getOWLReasonerManager().getReasonerStatus().equals(ReasonerStatus.INITIALIZED)){
+        if(!Tools.isReasonerActive(editorKit.getOWLModelManager().getOWLReasonerManager().getReasonerStatus())){
             reasoner = new StructuralReasoner(editorKit.getModelManager().getActiveOntology(), new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
         }
 

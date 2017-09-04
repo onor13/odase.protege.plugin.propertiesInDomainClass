@@ -1,15 +1,13 @@
-package odase.hierarchyProviders;
+package odase.propertiesInDomainClass.hierarchyProviders;
 
 import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.model.hierarchy.AbstractOWLPropertyHierarchyProvider;
-import org.protege.editor.owl.model.inference.ReasonerStatus;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.search.EntitySearcher;
 
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
-import static org.semanticweb.owlapi.apibinding.OWLFunctionalSyntaxFactory.ObjectIntersectionOf;
 
 /**
  * Created by vblagodarov on 01-06-17.

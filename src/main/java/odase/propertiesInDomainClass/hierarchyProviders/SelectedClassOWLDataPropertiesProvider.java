@@ -1,4 +1,4 @@
-package odase.hierarchyProviders;
+package odase.propertiesInDomainClass.hierarchyProviders;
 
 import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.model.hierarchy.AbstractOWLPropertyHierarchyProvider;

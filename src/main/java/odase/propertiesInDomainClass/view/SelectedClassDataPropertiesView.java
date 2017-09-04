@@ -1,6 +1,6 @@
-package odase.view;
+package odase.propertiesInDomainClass.view;
 
-import odase.hierarchyProviders.SelectedClassOWLDataPropertiesProvider;
+import odase.propertiesInDomainClass.hierarchyProviders.SelectedClassOWLDataPropertiesProvider;
 import org.protege.editor.owl.model.entity.OWLEntityCreationSet;
 import org.protege.editor.owl.model.hierarchy.AbstractOWLPropertyHierarchyProvider;
 import org.protege.editor.owl.ui.OWLIcons;
