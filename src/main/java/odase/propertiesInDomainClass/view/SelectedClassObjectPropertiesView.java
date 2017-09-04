@@ -1,5 +1,6 @@
 package odase.propertiesInDomainClass.view;
 
+import odase.propertiesInDomainClass.hierarchyProviders.BaseOWLPropertyHierarchyProvider;
 import odase.propertiesInDomainClass.hierarchyProviders.SelectedClassOWLObjectPropertiesProvider;
 import org.protege.editor.owl.model.entity.OWLEntityCreationSet;
 import org.protege.editor.owl.model.hierarchy.AbstractOWLPropertyHierarchyProvider;
@@ -69,7 +70,7 @@ public class SelectedClassObjectPropertiesView  extends SelectedClassPropertiesV
     }
 
     @Override
-    protected AbstractOWLPropertyHierarchyProvider getNewPropertiesProvider(OWLClass owlClass) {
+    protected BaseOWLPropertyHierarchyProvider getNewPropertiesProvider(OWLClass owlClass) {
         return new SelectedClassOWLObjectPropertiesProvider(owlClass, getOWLEditorKit());
     }
 }

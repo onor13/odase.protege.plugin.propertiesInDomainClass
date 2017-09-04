@@ -12,32 +12,19 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by vblagodarov on 01-06-17.
  */
-public class SelectedClassOWLObjectPropertiesProvider extends AbstractOWLPropertyHierarchyProvider<OWLClassExpression, OWLObjectPropertyExpression, OWLObjectProperty> {
+public class SelectedClassOWLObjectPropertiesProvider extends BaseOWLPropertyHierarchyProvider<OWLObjectPropertyExpression, OWLObjectProperty> {
 
     OWLEditorKit editorKit;
     OWLClass owlClass;
+    InDomainOWLObjectPropertiesProvider objectPropertiesProvider;
+
     public SelectedClassOWLObjectPropertiesProvider(OWLClass selectedClass, OWLEditorKit owlEditorKit) {
         super(owlEditorKit.getOWLModelManager().getOWLOntologyManager());
         editorKit = owlEditorKit;
         owlClass = selectedClass;
+        objectPropertiesProvider = new InDomainOWLObjectPropertiesProvider(editorKit);
     }
 
-
-    @Override
-    protected Set getPropertiesReferencedInChange(List<? extends OWLOntologyChange> changes) {
-        Set<OWLObjectProperty> properties = new HashSet<>();
-        for (OWLOntologyChange change : changes) {
-            if (change.isAxiomChange()) {
-                OWLAxiomChange axiomChange = (OWLAxiomChange) change;
-                for (OWLEntity entity : axiomChange.getSignature()) {
-                    if (entity.isOWLObjectProperty()) {
-                        properties.add(entity.asOWLObjectProperty());
-                    }
-                }
-            }
-        }
-        return properties;
-    }
 
     @Override
     protected boolean containsReference(OWLOntology ont, OWLObjectProperty prop) {
@@ -48,17 +35,13 @@ public class SelectedClassOWLObjectPropertiesProvider extends AbstractOWLPropert
     /**
      * Gets the relevant properties for the selected class in the specified ontology that are contained
      * within the property hierarchy.
+     *
      * @param ont The ontology
      */
     protected Set<OWLObjectProperty> getReferencedProperties(OWLOntology ont) {
-        return new OWLMatchingPropertiesProvider(ont.getAxioms(AxiomType.OBJECT_PROPERTY_DOMAIN), editorKit).getObjectProperties(owlClass);
+        objectPropertiesProvider.setOntology(ont);
+        return objectPropertiesProvider.getProperties(owlClass);
     }
-
-    @Override
-    protected Set<? extends OWLSubPropertyAxiom> getSubPropertyAxiomForRHS(OWLObjectProperty prop, OWLOntology ont) {
-        return ont.getObjectSubPropertyAxiomsForSuperProperty(prop);
-    }
-
 
     @Override
     protected OWLObjectProperty getRoot() {
@@ -67,14 +50,8 @@ public class SelectedClassOWLObjectPropertiesProvider extends AbstractOWLPropert
 
     @Override
     protected Collection<OWLObjectProperty> getSuperProperties(OWLObjectProperty subProperty, Set<OWLOntology> ontologies) {
-        //TODO: make it better
-        Set<OWLAxiom> objectPropDomain = new HashSet<>();
-        for(OWLOntology ont : ontologies) {
-            ont.getAxioms(AxiomType.OBJECT_PROPERTY_DOMAIN)
-                    .stream()
-                    .forEach(objectPropDomain::add);
-        }
-        Set<OWLObjectProperty> allValidProperties=new OWLMatchingPropertiesProvider(objectPropDomain, editorKit).getObjectProperties(owlClass);
+        objectPropertiesProvider.setOntologies(ontologies);
+        Set<OWLObjectProperty> allValidProperties = objectPropertiesProvider.getProperties(owlClass);
         return EntitySearcher.getSuperProperties(subProperty, ontologies)
                 .stream()
                 .filter(p -> !p.isAnonymous() && allValidProperties.contains(p))
@@ -84,16 +61,10 @@ public class SelectedClassOWLObjectPropertiesProvider extends AbstractOWLPropert
 
     @Override
     protected Collection<OWLObjectProperty> getSubProperties(OWLObjectProperty superProp, Set<OWLOntology> ontologies) {
-        //TODO: make it better
         List<OWLObjectProperty> result = new ArrayList<>();
-        Set<OWLAxiom> objectPropDomain = new HashSet<>();
-        for(OWLOntology ont : ontologies) {
-            ont.getAxioms(AxiomType.OBJECT_PROPERTY_DOMAIN)
-                    .stream()
-                    .forEach(objectPropDomain::add);
-        }
-        Set<OWLObjectProperty> allValidProperties=new OWLMatchingPropertiesProvider(objectPropDomain, editorKit).getObjectProperties(owlClass);
-        for(OWLOntology ont : ontologies) {
+        objectPropertiesProvider.setOntologies(ontologies);
+        Set<OWLObjectProperty> allValidProperties = objectPropertiesProvider.getProperties(owlClass);
+        for (OWLOntology ont : ontologies) {
             ont.getObjectSubPropertyAxiomsForSuperProperty(superProp)
                     .stream()
                     .map(OWLSubPropertyAxiom::getSubProperty)

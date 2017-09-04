@@ -1,6 +1,7 @@
 package odase.propertiesInDomainClass.view;
 
 import odase.propertiesInDomainClass.Tools;
+import odase.propertiesInDomainClass.hierarchyProviders.BaseOWLPropertyHierarchyProvider;
 import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.model.OWLModelManager;
 import org.protege.editor.owl.model.entity.OWLEntityCreationSet;
@@ -36,7 +37,7 @@ public abstract class SelectedClassPropertiesView <T extends OWLProperty> extend
     private AbstractOWLTreeAction<T> addSiblingPropertyAction;
     private AbstractOWLTreeAction<T> addSubPropertyAction;
     private AbstractDeleteEntityAction<T> deletePropertyAction;
-    private AbstractOWLPropertyHierarchyProvider propertiesProvider;
+    private BaseOWLPropertyHierarchyProvider propertiesProvider;
     protected T userSelectedProperty;
     private JScrollPane scrollPane;
 
@@ -53,7 +54,7 @@ public abstract class SelectedClassPropertiesView <T extends OWLProperty> extend
     protected abstract String getAddPropertyToolTip();
     protected abstract String getAddSubPropertyToolTip();
     protected abstract String getDeletePropertyToolTip();
-    protected abstract AbstractOWLPropertyHierarchyProvider getNewPropertiesProvider(OWLClass selectedClass);
+    protected abstract BaseOWLPropertyHierarchyProvider getNewPropertiesProvider(OWLClass selectedClass);
     protected abstract OWLEntityCreationSet<T> createProperty();
     protected abstract OWLSubPropertyAxiom getSubPropertyAxiom(T child, T parent);
     protected abstract OWLAxiom addPropertyToDomain(T property, OWLClass owlClass);
