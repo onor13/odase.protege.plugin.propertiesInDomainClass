@@ -16,7 +16,7 @@ To build and run, you must have the following items installed:
 
 + Java 8 or higher
 + Apache's [Maven](http://maven.apache.org/index.html).
-+ A Protégé distribution (5.0 or higher). The Protege releases are [available](http://protege.stanford.edu/products.php#desktop-protege) from the main Protege website.
++ A Protégé distribution 5.0 - 5.2.0. The Protege releases are [available](http://protege.stanford.edu/products.php#desktop-protege) from the main Protege website.
 
 #### Build and install plug-ins
 
